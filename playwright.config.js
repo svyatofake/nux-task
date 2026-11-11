@@ -1,9 +1,7 @@
-import { defineConfig, devices } from '@playwright/test';
-import * as dotenv from 'dotenv';
+require('dotenv').config();
+const { defineConfig, devices } = require('@playwright/test');
 
-dotenv.config();
-
-export default defineConfig({
+module.exports = defineConfig({
   testDir: './tests',
   timeout: 30000,
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],

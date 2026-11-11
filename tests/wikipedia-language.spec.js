@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+const { test, expect } = require('@playwright/test');
 
 const USERNAME = process.env.WIKI_USERNAME ?? '';
 const PASSWORD = process.env.WIKI_PASSWORD ?? '';
@@ -37,11 +37,10 @@ test.describe('Wikipedia interface language change', () => {
     await page.locator('#prefcontrol, button[name="wpSave"], input[name="wpSave"]').first().click();
     await page.waitForLoadState('networkidle');
 
-    const successBanner = page.locator('.successbox, #mw-preferences-success, [class*="success"]');
-    const pageTitle = page.locator('#firstHeading, h1.firstHeading');
-
-    const isSuccess = await successBanner.first().isVisible().catch(() => false);
-    const titleText = await pageTitle.first().textContent().catch(() => '');
+    const isSuccess = await page.locator('.successbox, #mw-preferences-success, [class*="success"]')
+      .first().isVisible().catch(() => false);
+    const titleText = await page.locator('#firstHeading, h1.firstHeading')
+      .first().textContent().catch(() => '');
 
     if (!isSuccess && !titleText?.includes('Налаштування')) {
       const currentLang = await page.locator('#wpUserLanguage').inputValue().catch(() => '');
