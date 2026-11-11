@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  playwright:
+    build: .
+    volumes:
+      - ./playwright-report:/app/playwright-report
+    env_file:
+      - .env

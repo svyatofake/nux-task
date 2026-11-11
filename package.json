@@ -1,0 +1,14 @@
+{
+  "name": "nux-task",
+  "version": "1.0.0",
+  "description": "Wikipedia interface language change automation test",
+  "scripts": {
+    "test": "playwright test",
+    "test:docker": "docker-compose up --build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "typescript": "^5.3.0",
+    "dotenv": "^16.4.0"
+  }
+}
